@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /approva
+Disallow: /grazie.html
+Sitemap: https://caricaora.it/sitemap.xml
