@@ -260,6 +260,16 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
   .chat{right:8px;left:8px;bottom:84px;width:auto;max-height:calc(100vh - 110px)}
   body{padding-bottom:84px}
 }
+
+/* chat a destra con etichetta */
+.chat-fab{left:auto;right:24px;width:auto;height:60px;padding:0 22px 0 16px;border-radius:999px;gap:10px;font-family:var(--body);font-weight:800;font-size:15px}
+.chat{left:auto;right:24px;bottom:100px}
+.chat-label{white-space:nowrap}
+@media (max-width:980px){
+  .chat-fab{left:auto;right:12px;bottom:84px;height:52px;font-size:14px;padding:0 18px 0 14px}
+  .sticky{left:12px;right:12px}
+  .chat{left:8px;right:8px;bottom:146px;max-height:calc(100vh - 170px)}
+}
 </style>
 </head>
 <body>
@@ -456,6 +466,7 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 <!-- ============ ASSISTENTE CHAT AUTOMATICO ============ -->
 <button class="chat-fab" id="chatFab" type="button" aria-label="Apri la chat con l'assistente VOLTRA" aria-expanded="false">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span class="chat-label">Assistenza clienti 24 ore su 24</span>
   <span class="chat-badge" id="chatBadge">1</span>
 </button>
 <div class="chat" id="chat" role="dialog" aria-label="Assistente VOLTRA" hidden>
