@@ -35,7 +35,7 @@ exports.handler = async (event) => {
       a: V.CONFIG.emailTitolare,
       rispondiA: o.email,
       oggetto: `${o.prova ? '[PROVA] ' : ''}💰 Nuovo ordine ${V.euro(o.totale, o.valuta)} – ${o.nome}`,
-      html: emailTitolare(o, link, wa),
+      html: emailTitolare(o, link, wa, V.conti(o, { feeStripe: await V.commissioneStripe(o.pi) })),
     });
     await V.salvaStatoCJ(o.pi, { email_titolare: 'inviata' });
     return { statusCode: 200, body: 'OK' };
@@ -46,7 +46,7 @@ exports.handler = async (event) => {
   }
 };
 
-function emailTitolare(o, link, wa) {
+function emailTitolare(o, link, wa, c) {
   const e = V.esc, i = o.indirizzo;
   const riga = (k, v) => `<tr><td style="padding:10px 0;color:#6B685C;font-size:14px;border-bottom:1px solid #E4E0D2;vertical-align:top">${k}</td><td style="padding:10px 0;font-size:15px;font-weight:700;text-align:right;border-bottom:1px solid #E4E0D2">${v}</td></tr>`;
   return `<!doctype html><html><body style="margin:0;background:#F4F1E8;font-family:Arial,Helvetica,sans-serif;color:#0B0C0A">
@@ -69,6 +69,16 @@ ${riga('Pezzi da spedire', o.pezzi)}
 <tr><td style="padding:18px 26px 6px" align="center">
 <a href="${e(link)}" style="display:block;background:#C6F432;color:#0B0C0A;text-decoration:none;font-weight:900;font-size:19px;padding:20px;border-radius:99px">✅ INVIA L’ORDINE A CJ</a>
 <div style="font-size:13px;color:#6B685C;margin-top:10px">Si apre la pagina di conferma: un tocco su “Conferma” e CJ spedisce al cliente.</div>
+</td></tr>
+<tr><td style="padding:22px 26px 4px">
+<div style="font-size:13px;font-weight:800;letter-spacing:2px;color:#4A5A0E;margin-bottom:8px">I CONTI DI QUESTO ORDINE</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:2px solid #0B0C0A;border-radius:14px;border-collapse:separate;overflow:hidden">
+<tr><td style="padding:12px 14px;font-size:15px;border-bottom:1px solid #E4E0D2">✅ Pagato dal cliente <span style="color:#6B685C;font-size:12px">(arriva sul conto Stripe di Mario)</span></td><td style="padding:12px 14px;font-size:16px;font-weight:800;text-align:right;border-bottom:1px solid #E4E0D2">${V.euro(c.incassato)}</td></tr>
+<tr><td style="padding:12px 14px;font-size:15px;border-bottom:1px solid #E4E0D2">− Commissione Stripe${c.stripeStimata ? ' <span style="color:#6B685C;font-size:12px">(stima)</span>' : ''}</td><td style="padding:12px 14px;font-size:16px;font-weight:700;text-align:right;white-space:nowrap;border-bottom:1px solid #E4E0D2">− ${V.euro(c.stripe)}</td></tr>
+<tr style="background:#FFF6D6"><td style="padding:12px 14px;font-size:15px;border-bottom:1px solid #E4E0D2">⏳ Da pagare a CJ <span style="color:#6B685C;font-size:12px">(stima: ${o.pezzi} × ${V.euro(V.CONFIG.conti.costoCJPerPezzoEUR)})</span></td><td style="padding:12px 14px;font-size:16px;font-weight:800;text-align:right;white-space:nowrap;border-bottom:1px solid #E4E0D2">− ${V.euro(c.cj)}</td></tr>
+<tr style="background:#0B0C0A"><td style="padding:14px;font-size:16px;font-weight:900;color:#C6F432">= Ti resta (guadagno stimato)</td><td style="padding:14px;font-size:20px;font-weight:900;text-align:right;white-space:nowrap;color:#C6F432">${V.euro(c.resta)}</td></tr>
+</table>
+<div style="font-size:12px;color:#6B685C;margin-top:8px;line-height:1.5">Il costo CJ esatto lo vedi nella pagina di conferma dopo l’invio. Tasse e contributi non sono inclusi.</div>
 </td></tr>
 ${wa ? `<tr><td style="padding:10px 26px 4px" align="center"><a href="${e(wa)}" style="display:block;border:2px solid #3CD66B;color:#0B0C0A;text-decoration:none;font-weight:800;font-size:16px;padding:14px;border-radius:99px">💬 Ringrazia il cliente su WhatsApp</a></td></tr>` : ''}
 <tr><td style="padding:22px 26px 26px;font-size:12px;color:#8A877B">Pagamento Stripe: ${e(o.pi)} · Non inoltrare questa email: il pulsante è personale.</td></tr>

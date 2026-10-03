@@ -32,6 +32,14 @@ module.exports = {
     pagamento: 2,
   },
 
+  // Per la tabella dei conti nell'email "Nuovo ordine" (sono STIME: aggiornale con i numeri veri)
+  conti: {
+    // Quanto paghi a CJ per 1 pezzo, spedizione verso l'Italia e IVA d'importazione comprese, in euro
+    costoCJPerPezzoEUR: 25.60,
+    // Cambio usato per convertire in euro il costo reale che CJ mostra in dollari dopo l'ordine
+    cambioUSDinEUR: 0.90,
+  },
+
   // Collega ogni Payment Link di Stripe al numero di power bank da spedire.
   // L'ID del link (inizia con "plink_") lo trovi su Stripe → Payment Links → apri il link.
   // Se un link non è in elenco, si spedisce 1 pezzo per ogni articolo acquistato.

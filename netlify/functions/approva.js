@@ -44,6 +44,7 @@ exports.handler = async (event) => {
 
   try {
     const r = await V.creaOrdineCJ(o);
+    const fee = await V.commissioneStripe(pi);
     await V.salvaStatoCJ(pi, {
       cj_status: 'inviato', cj_order_id: r.orderId || r.orderNumber || 'creato',
       cj_stato_ordine: r.orderStatus || '', cj_costo_usd: r.actualPayment ?? r.orderAmount ?? '',
@@ -58,6 +59,12 @@ exports.handler = async (event) => {
 <div class="row"><span>Pagato a CJ</span><b>${r.actualPayment != null ? '$ ' + V.esc(r.actualPayment) : (r.orderAmount != null ? '$ ' + V.esc(r.orderAmount) : '—')}</b></div>
 <div class="row"><span>Hai incassato</span><b>${V.euro(o.totale, o.valuta)}</b></div>
 </div>
+${(() => { const c = V.conti(o, { feeStripe: fee, costoCJUSD: r.actualPayment ?? r.orderAmount }); return `<div class="card ok">
+<div class="row"><span>✅ Pagato dal cliente</span><b>${V.euro(c.incassato)}</b></div>
+<div class="row"><span>− Commissione Stripe${c.stripeStimata ? ' (stima)' : ''}</span><b>− ${V.euro(c.stripe)}</b></div>
+<div class="row"><span>− Pagato a CJ${c.cjReale ? ` ($ ${V.esc(c.cjUSD)})` : ' (stima)'}</span><b>− ${V.euro(c.cj)}</b></div>
+<div class="row"><span><b style="color:var(--a)">= Ti resta</b></span><b style="color:var(--a);font-size:20px">${V.euro(c.resta)}</b></div>
+</div>`; })()}
 <p>${pagato ? 'CJ ha scalato il costo dal tuo saldo e prepara la spedizione per' : 'L’ordine è su CJ ma <b>non è pagato</b>: entra nel pannello CJ → Orders e pagalo per farlo partire. Destinatario:'} <b>${V.esc(o.nome)}</b>, ${V.esc(o.indirizzo.citta)}.</p>
 ${o.prova ? '<p><span class="tag">Ordine di prova</span></p>' : ''}
 <p>Quando CJ spedisce, il codice di tracciamento compare nel pannello CJ → Orders.</p>`);

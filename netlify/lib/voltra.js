@@ -72,6 +72,30 @@ async function salvaStatoCJ(pi, dati) {
   return stripe('/payment_intents/' + encodeURIComponent(pi), { method: 'POST', form });
 }
 
+// Commissione reale trattenuta da Stripe su questo pagamento (in euro). null se non ancora disponibile.
+async function commissioneStripe(pi) {
+  try {
+    const p = await stripe(`/payment_intents/${encodeURIComponent(pi)}?expand[]=latest_charge.balance_transaction`);
+    const bt = p.latest_charge && p.latest_charge.balance_transaction;
+    return bt && typeof bt === 'object' ? bt.fee / 100 : null;
+  } catch { return null; }
+}
+
+// Tabella dei conti: incassato, Stripe, CJ, guadagno che resta
+function conti(o, { feeStripe = null, costoCJUSD = null } = {}) {
+  const c = CONFIG.conti || {};
+  const cjReale = costoCJUSD != null && !isNaN(Number(costoCJUSD));
+  const costoCJ = cjReale ? Number(costoCJUSD) * (c.cambioUSDinEUR || 0.9) : (c.costoCJPerPezzoEUR || 0) * o.pezzi;
+  const fee = feeStripe != null ? feeStripe : o.totale * 0.015 + 0.25;
+  return {
+    incassato: o.totale,
+    stripe: fee, stripeStimata: feeStripe == null,
+    cj: costoCJ, cjReale,
+    cjUSD: cjReale ? Number(costoCJUSD) : null,
+    resta: o.totale - fee - costoCJ,
+  };
+}
+
 // Estrae dall'ordine Stripe i dati che servono a CJ e all'email
 function datiOrdine(s) {
   const cd = s.customer_details || {};
@@ -237,7 +261,7 @@ function riepilogoHTML(o) {
 
 module.exports = {
   CONFIG, env, verificaFirmaStripe, firmaLink, linkValido,
-  stripe, sessioneDaPagamento, sessioneCompleta, statoCJ, salvaStatoCJ, datiOrdine,
+  stripe, sessioneDaPagamento, sessioneCompleta, statoCJ, salvaStatoCJ, datiOrdine, commissioneStripe, conti,
   cj, preventivoCJ, creaOrdineCJ, inviaEmail,
   esc, euro, soloCifre, pagina, riepilogoHTML,
 };
