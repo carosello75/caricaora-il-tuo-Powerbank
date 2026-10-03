@@ -270,6 +270,21 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
   .sticky{left:12px;right:12px}
   .chat{left:8px;right:8px;bottom:146px;max-height:calc(100vh - 170px)}
 }
+
+/* galleria foto a scorrimento */
+.gal-wrap{padding:0 !important;display:block !important;overflow:hidden;background:#F4F1E8}
+.gal-wrap .badge{position:absolute}
+.gal{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.gal:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.gal-slide{flex:0 0 100%;height:100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;background:#F4F1E8}
+.gal-slide img{width:100%;height:100%;object-fit:contain}
+.gal-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;border-radius:50%;border:none;background:rgba(11,12,10,.75);color:#F4F1E8;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.gal-btn:hover{background:var(--bg)}
+.gal-prev{left:14px}.gal-next{right:14px}
+.gal-dots{position:absolute;left:0;right:0;bottom:16px;z-index:3;display:flex;justify-content:center;gap:8px}
+.gal-dot{width:10px;height:10px;border-radius:999px;border:none;padding:0;background:rgba(11,12,10,.35);cursor:pointer;transition:width .25s,background .25s}
+.gal-dot.on{width:28px;background:var(--bg)}
 </style>
 </head>
 <body>
@@ -416,12 +431,17 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 
 <!-- OFFERTA -->
 <section id="ordina" class="pad"><div class="wrap grid2">
-  <div class="prod reveal">
-    <div class="badge" style="z-index:2">Offerta lancio</div>
-    <!-- Sostituisci con: <img src="powerbank.jpg" alt="Power bank VOLTRA"> -->
-    <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#6B685C" stroke-width="1.4" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="11" r="4"/></svg>
-    <div style="font-family:var(--display);font-size:18px;font-weight:700">[FOTO DEL TUO POWER BANK]</div>
-    <div style="font-size:15px;color:#6B685C">Scatto tuo, su sfondo chiaro, meglio se attaccato a un telefono</div>
+  <div class="prod reveal gal-wrap">
+    <div class="badge" style="z-index:3">Offerta lancio</div>
+    <div class="gal" id="gal" tabindex="0" aria-label="Foto del prodotto, scorri per vederle tutte">
+      <div class="gal-slide"><img src="foto-1.jpg" alt="Power bank magnetico VOLTRA Mag, fronte e retro" loading="eager"></div>
+      <div class="gal-slide"><img src="foto-2.jpg" alt="Power bank VOLTRA Mag con anello magnetico per la ricarica wireless" loading="lazy"></div>
+      <div class="gal-slide"><img src="foto-3.jpg" alt="Power bank VOLTRA Mag in ricarica veloce con cavo USB-C" loading="lazy"></div>
+      <div class="gal-slide"><img src="foto-4.jpg" alt="Power bank VOLTRA Mag in mano, in aereo nel bagaglio a mano" loading="lazy"></div>
+    </div>
+    <button type="button" class="gal-btn gal-prev" aria-label="Foto precedente"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button type="button" class="gal-btn gal-next" aria-label="Foto successiva"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="gal-dots"><button type="button" class="gal-dot on" aria-label="Foto 1 di 4"></button><button type="button" class="gal-dot" aria-label="Foto 2 di 4"></button><button type="button" class="gal-dot" aria-label="Foto 3 di 4"></button><button type="button" class="gal-dot" aria-label="Foto 4 di 4"></button></div>
   </div>
   <div class="reveal" style="display:flex;flex-direction:column;gap:24px">
     <div class="eyebrow">Ordina ora</div>
@@ -591,6 +611,24 @@ const RISPOSTE = [
   if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('on'));return;}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.12});
   els.forEach(e=>io.observe(e));
+})();
+
+// galleria foto a scorrimento
+(function(){
+  const g=document.getElementById('gal');if(!g)return;
+  const dots=[...document.querySelectorAll('.gal-dot')],n=dots.length;let i=0,timer;
+  const go=k=>{i=(k+n)%n;g.scrollTo({left:g.clientWidth*i,behavior:'smooth'});};
+  const mark=()=>{const k=Math.round(g.scrollLeft/g.clientWidth);i=k;dots.forEach((d,j)=>d.classList.toggle('on',j===k));};
+  g.addEventListener('scroll',()=>{clearTimeout(g._t);g._t=setTimeout(mark,80);});
+  document.querySelector('.gal-prev').addEventListener('click',()=>{go(i-1);restart();});
+  document.querySelector('.gal-next').addEventListener('click',()=>{go(i+1);restart();});
+  dots.forEach((d,j)=>d.addEventListener('click',()=>{go(j);restart();}));
+  g.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){go(i+1);restart();}if(e.key==='ArrowLeft'){go(i-1);restart();}});
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function restart(){clearInterval(timer);if(!reduce)timer=setInterval(()=>go(i+1),4000);}
+  ['mouseenter','touchstart','focusin'].forEach(ev=>g.parentElement.addEventListener(ev,()=>clearInterval(timer),{passive:true}));
+  g.parentElement.addEventListener('mouseleave',restart);
+  restart();
 })();
 </script>
 </body>
