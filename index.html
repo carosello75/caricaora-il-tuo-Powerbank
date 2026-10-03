@@ -274,7 +274,7 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 </head>
 <body>
 
-<div class="topbar">Spedizione gratuita in [24/48h] · Reso facile entro [30] giorni · Pagamento sicuro</div>
+<div class="topbar">Spedizione gratuita e tracciata · Reso facile entro [30] giorni · Pagamento sicuro</div>
 
 <nav>
   <a class="logo" href="#"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B0C0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i>VOLTRA</a>
@@ -417,7 +417,7 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 <!-- OFFERTA -->
 <section id="ordina" class="pad"><div class="wrap grid2">
   <div class="prod reveal">
-    <div class="badge">[Offerta lancio]</div>
+    <div class="badge" style="z-index:2">Offerta lancio</div>
     <!-- Sostituisci con: <img src="powerbank.jpg" alt="Power bank VOLTRA"> -->
     <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#6B685C" stroke-width="1.4" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="3"/><circle cx="12" cy="11" r="4"/></svg>
     <div style="font-family:var(--display);font-size:18px;font-weight:700">[FOTO DEL TUO POWER BANK]</div>
@@ -427,12 +427,12 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
     <div class="eyebrow">Ordina ora</div>
     <h2 style="font-size:clamp(32px,4vw,48px)">VOLTRA Mag · Power bank magnetico</h2>
     <div style="display:flex;flex-direction:column;gap:14px">
-      <button class="opt" data-opt="uno"><span style="display:flex;align-items:center;gap:18px"><span class="radio"></span><span><span class="t">1 power bank</span><br><span class="s">Per te</span></span></span><span class="p">[€ PREZZO]</span></button>
-      <button class="opt on" data-opt="duo"><span style="display:flex;align-items:center;gap:18px"><span class="radio"></span><span><span class="t">2 power bank · il più scelto</span><br><span class="s">Uno per te, uno da regalare · risparmi [€ X]</span></span></span><span class="p">[€ PREZZO]</span></button>
+      <button class="opt" data-opt="uno"><span style="display:flex;align-items:center;gap:18px"><span class="radio"></span><span><span class="t">1 power bank</span><br><span class="s">Per te · spedizione inclusa</span></span></span><span class="p">39,90 €</span></button>
+      <button class="opt on" data-opt="duo"><span style="display:flex;align-items:center;gap:18px"><span class="radio"></span><span><span class="t">2 power bank · il più scelto</span><br><span class="s">Uno per te, uno da regalare · risparmi 9,90 € · spedizione inclusa</span></span></span><span class="p">69,90 €</span></button>
     </div>
     <a href="#" id="buyBtn" class="btn btn-accent ring" style="padding:24px 36px;font-size:20px"><span id="buyLabel">Ordina 2 power bank</span>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;font-weight:600;color:var(--dim)"><span>Pagamento sicuro</span><span>·</span><span>Spedizione in [24/48h]</span><span>·</span><span>Reso entro [30] giorni</span></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;font-weight:600;color:var(--dim)"><span>Pagamento sicuro</span><span>·</span><span>Spedizione tracciata inclusa</span><span>·</span><span>Reso entro [30] giorni</span></div>
   </div>
 </div></section>
 
@@ -488,7 +488,7 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
   </form>
 </div>
 
-<a href="#ordina" class="btn btn-accent sticky">Ordina ora · [€ PREZZO]</a>
+<a href="#ordina" class="btn btn-accent sticky">Ordina ora · da 39,90 €</a>
 
 <script>
 /* ============================================================
@@ -520,7 +520,7 @@ const RISPOSTE = [
     testo: "Hai [30] giorni per restituirlo, e 2 anni di garanzia se è difettoso. Fai tutto da qui: <a href=\"resi.html\">compila il modulo resi</a>, ci vuole un minuto." },
   { chip: "Come si paga?",
     parole: ["pag","carta","paypal","prezzo","costa","costo","sconto","offerta","euro","€"],
-    testo: "Paghi in modo sicuro con [carta, PayPal, Apple Pay]. 1 pezzo costa [€ PREZZO], 2 pezzi [€ PREZZO] (ne regali uno e risparmi). <a href=\"#ordina\" data-chat-close>Vai all’ordine</a>." },
+    testo: "Paghi in modo sicuro con [carta, PayPal, Apple Pay]. 1 pezzo costa 39,90 €, 2 pezzi 69,90 € (ne regali uno e risparmi 9,90 €). La spedizione è sempre inclusa. <a href=\"#ordina\" data-chat-close>Vai all’ordine</a>." },
   { chip: "Voglio parlare con te",
     parole: ["parlare","persona","umano","operatore","contatt","whatsapp","telefono tuo","chiamare","email"],
     testo: "Certo! Ti rispondo io di persona su WhatsApp, di solito in poche ore." , umano: true }
