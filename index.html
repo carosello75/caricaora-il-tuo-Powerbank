@@ -285,11 +285,46 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 .gal-dots{position:absolute;left:0;right:0;bottom:16px;z-index:3;display:flex;justify-content:center;gap:8px}
 .gal-dot{width:10px;height:10px;border-radius:999px;border:none;padding:0;background:rgba(11,12,10,.35);cursor:pointer;transition:width .25s,background .25s}
 .gal-dot.on{width:28px;background:var(--bg)}
+
+/* testi più marcati e leggibili */
+:root{--muted:#DCD8CC;--dim:#BEBAAD}
+body{font-weight:500}
+.lead,.card p,.pdf p,.step p,details p,.guar small,.trust{font-weight:500}
+.lead{font-size:21px}
+.card p,details p{font-size:18px}
+.eyebrow{font-weight:900}
+/* recensioni */
+.rev-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
+.rev-why{display:flex;flex-direction:column;gap:16px}
+.rev-point{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:20px;background:var(--bg);border:1px solid var(--line);font-size:17px;line-height:1.55}
+.rev-point b{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--display)}
+.rev-form{min-width:0;padding:32px;border-radius:28px;background:var(--bg);border:2px solid var(--accent);display:flex;flex-direction:column;gap:18px}
+.rev-form .hp{position:absolute;left:-9999px}
+.rev-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.rev-field{display:flex;flex-direction:column;gap:8px}
+.rev-field label,.rev-stars legend{font-weight:800;font-size:16px}
+.rev-field small{font-weight:500;color:var(--dim)}
+.rev-field input,.rev-field textarea{width:100%;min-width:0;box-sizing:border-box;padding:14px 16px;border-radius:14px;border:1px solid rgba(244,241,232,.25);background:var(--panel);color:var(--ink);font-family:var(--body);font-size:16px;font-weight:500}
+.rev-field textarea{min-height:120px;resize:vertical}
+.rev-field input:focus,.rev-field textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.rev-field input[type=file]{padding:12px}
+.rev-stars{border:none;margin:0;padding:0}
+.rev-stars legend{margin-bottom:8px}
+.stars-in{display:inline-flex;flex-direction:row-reverse;gap:6px}
+.stars-in input{position:absolute;opacity:0;width:1px;height:1px}
+.stars-in label{font-size:40px;line-height:1;color:#3A3B35;cursor:pointer;transition:color .15s,transform .15s}
+.stars-in label:hover,.stars-in label:hover~label,.stars-in input:checked~label{color:var(--accent)}
+.stars-in label:hover{transform:scale(1.12)}
+.stars-in input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.rev-check{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--muted)}
+.rev-check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex-shrink:0}
+.rev-form .btn{align-self:flex-start}
+@media (max-width:980px){.rev-layout,.rev-row{grid-template-columns:minmax(0,1fr)}.rev-form{padding:22px}.rev-form .btn{align-self:stretch}}
 </style>
 </head>
 <body>
 
-<div class="topbar">Spedizione gratuita e tracciata · Reso facile entro [30] giorni · Pagamento sicuro</div>
+<div class="topbar">Spedizione gratuita e tracciata · Reso facile entro 30 giorni · Pagamento sicuro</div>
 
 <nav>
   <a class="logo" href="#"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B0C0A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></i>VOLTRA</a>
@@ -313,8 +348,8 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Scarica la guida gratis</a>
       </div>
       <div class="trust rise d4">
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Reso entro [30] giorni</div>
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Garanzia [24] mesi</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Reso entro 30 giorni</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Garanzia legale 24 mesi</div>
         <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Assistenza da me, di persona</div>
       </div>
     </div>
@@ -368,10 +403,10 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
     <div class="step hl"><div class="n">03</div><h3>Stai già caricando</h3><p>Continui a usare il telefono mentre si ricarica. Tu pensi alla tua giornata.</p></div>
   </div>
   <div class="specs reveal">
-    <div><strong>[10.000]</strong><span>mAh di capacità</span></div>
-    <div><strong>[15W]</strong><span>Ricarica wireless</span></div>
-    <div><strong>[Qi2]</strong><span>Standard magnetico</span></div>
-    <div><strong>[190 g]</strong><span>Peso tascabile</span></div>
+    <div><strong>10.000</strong><span>mAh di capacità</span></div>
+    <div><strong>15 W</strong><span>Ricarica wireless</span></div>
+    <div><strong>20 W</strong><span>Ricarica rapida USB-C</span></div>
+    <div><strong>200 g</strong><span>Peso tascabile</span></div>
   </div>
 </div></section>
 
@@ -395,18 +430,18 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 <!-- CHI SONO -->
 <section class="pad"><div class="wrap grid2">
   <div class="photo has-img reveal" style="position:relative">
-    <img src="la-mia-foto.jpg" alt="[Il tuo nome] con il power bank VOLTRA in mano" style="object-position:center 30%">
+    <img src="la-mia-foto.jpg" alt="Fabio con il power bank VOLTRA in mano" style="object-position:center 30%">
     <div class="sig">Io, con il mio VOLTRA ⚡</div>
   </div>
   <div class="reveal" style="display:flex;flex-direction:column;gap:24px">
     <div class="eyebrow">Ci metto la faccia</div>
-    <h2 style="font-size:clamp(36px,4vw,52px)">Ciao, sono [IL TUO NOME].</h2>
-    <p class="lead" style="font-size:19px">[Racconta in 3–4 righe chi sei e perché vendi questo prodotto. Es.: sono rimasto a piedi con il telefono spento, ho provato decine di power bank e ho scelto questo. Lo uso io ogni giorno, e se hai un problema rispondo io, non un call center.]</p>
+    <h2 style="font-size:clamp(36px,4vw,52px)">Ciao, sono Fabio.</h2>
+    <p class="lead" style="font-size:19px">Ho cercato un power bank sottile, che si agganciasse da solo al telefono e stesse davvero in tasca, per non restare mai più al 5% nel momento sbagliato. Questo è quello che ho scelto. E se hai un dubbio, prima o dopo l’acquisto, mi scrivi su WhatsApp e ti rispondo io: non un call center.</p>
     <div class="guar">
-      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span><b>Pagamento sicuro</b><small>[Carta, PayPal, altro]</small></span></div>
-      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span><b>Spedizione tracciata</b><small>Consegna in [N] giorni</small></span></div>
-      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span><b>Reso facile</b><small>Entro [30] giorni</small></span></div>
-      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span><b>Rispondo io</b><small>[WhatsApp / email]</small></span></div>
+      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span><b>Pagamento sicuro</b><small>Carta, Apple Pay, Google Pay</small></span></div>
+      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span><b>Spedizione tracciata</b><small>Codice di tracciamento via email</small></span></div>
+      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span><b>Reso facile</b><small>Entro 30 giorni</small></span></div>
+      <div><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span><b>Rispondo io</b><small>WhatsApp 389 500 9266</small></span></div>
     </div>
   </div>
 </div></section>
@@ -414,18 +449,29 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
 <!-- RECENSIONI: incolla solo recensioni REALI dei tuoi clienti -->
 <section id="recensioni" class="reviews pad"><div class="wrap">
   <div class="head-row reveal">
-    <div style="display:flex;flex-direction:column;gap:18px;max-width:760px"><div class="eyebrow">Chi l’ha già provato</div><h2>Non te lo dico io. Te lo dicono loro.</h2></div>
-    <div class="stats"><div><strong>[4,8]/5</strong><span>Voto medio</span></div><div><strong>[N]</strong><span>Clienti</span></div></div>
+    <div style="display:flex;flex-direction:column;gap:18px;max-width:760px"><div class="eyebrow">Recensioni dei clienti</div><h2>Hai già il tuo VOLTRA? Raccontacelo.</h2>
+    <p class="lead">Qui pubblichiamo solo recensioni vere, scritte da chi ha comprato. Il negozio è appena nato: le prime arriveranno presto, e la tua può essere una di quelle.</p></div>
   </div>
-  <div class="grid3 reveal">
-    <div class="card rev"><div class="stars">★★★★★</div><p style="color:#E6E2D5;font-size:18px">[Incolla qui la recensione reale di un cliente, con le sue parole. Meglio se racconta un momento preciso: in macchina, in viaggio, al concerto.]</p><div class="who"><div class="av">FOTO</div><div><b>[Nome e iniziale]</b><br><small style="color:var(--dim)">[Città] · [data]</small></div></div></div>
-    <div class="card rev"><div class="stars">★★★★★</div><p style="color:#E6E2D5;font-size:18px">[Seconda recensione reale. Le più credibili citano un dettaglio concreto: quanto è durato, come si aggancia, quanto è leggero.]</p><div class="who"><div class="av">FOTO</div><div><b>[Nome e iniziale]</b><br><small style="color:var(--dim)">[Città] · [data]</small></div></div></div>
-    <div class="card rev"><div class="stars">★★★★★</div><p style="color:#E6E2D5;font-size:18px">[Terza recensione reale. Puoi anche usare uno screenshot di un messaggio WhatsApp, con il permesso del cliente.]</p><div class="who"><div class="av">FOTO</div><div><b>[Nome e iniziale]</b><br><small style="color:var(--dim)">[Città] · [data]</small></div></div></div>
-  </div>
-  <div class="vrev reveal">
-    <div style="display:flex;align-items:center;gap:18px"><div class="play" style="width:56px;height:56px"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0B0C0A"><path d="M8 5v14l11-7z"/></svg></div>
-      <div><div style="font-family:var(--display);font-size:18px;font-weight:700">[VIDEO-RECENSIONI DEI CLIENTI]</div><div style="font-size:15px;color:var(--dim)">Chiedi ai primi clienti un video di 15 secondi: è la prova più forte che esista.</div></div></div>
-    <a href="#ordina" class="btn btn-accent">Unisciti a loro</a>
+  <div class="rev-layout reveal">
+    <div class="rev-why">
+      <div class="rev-point"><b>1</b><span>Scegli le stelline e racconta com’è andata: in macchina, in viaggio, al lavoro.</span></div>
+      <div class="rev-point"><b>2</b><span>Se vuoi, aggiungi una foto del tuo power bank o di te mentre lo usi.</span></div>
+      <div class="rev-point"><b>3</b><span>Leggo ogni recensione e la pubblico qui sul sito, con il tuo nome e la tua città.</span></div>
+    </div>
+    <form class="rev-form" name="recensioni" method="POST" action="/grazie-recensione.html" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="recensioni">
+      <p class="hp"><label>Non compilare: <input name="bot-field"></label></p>
+      <fieldset class="rev-stars"><legend>Quante stelle dai?</legend><div class="stars-in"><input type="radio" id="st5" name="stelle" value="5" required><label for="st5" title="5 stelle">★</label><input type="radio" id="st4" name="stelle" value="4"><label for="st4" title="4 stelle">★</label><input type="radio" id="st3" name="stelle" value="3"><label for="st3" title="3 stelle">★</label><input type="radio" id="st2" name="stelle" value="2"><label for="st2" title="2 stelle">★</label><input type="radio" id="st1" name="stelle" value="1"><label for="st1" title="1 stelle">★</label></div></fieldset>
+      <div class="rev-row">
+        <div class="rev-field"><label for="r-nome">Nome e iniziale del cognome</label><input id="r-nome" name="nome" required maxlength="40" placeholder="Es. Giulia R." autocomplete="name"></div>
+        <div class="rev-field"><label for="r-citta">Città</label><input id="r-citta" name="citta" required maxlength="40" placeholder="Es. Roma" autocomplete="address-level2"></div>
+      </div>
+      <div class="rev-field"><label for="r-email">Email dell’ordine <small>(non verrà pubblicata)</small></label><input id="r-email" type="email" name="email" required autocomplete="email"></div>
+      <div class="rev-field"><label for="r-testo">La tua esperienza</label><textarea id="r-testo" name="recensione" required minlength="20" maxlength="800" placeholder="Com’è andata? Ti ha salvato in qualche momento?"></textarea></div>
+      <div class="rev-field"><label for="r-foto">Foto (facoltativa)</label><input id="r-foto" type="file" name="foto" accept="image/*"></div>
+      <label class="rev-check"><input type="checkbox" name="consenso" value="si" required><span>Acconsento alla pubblicazione sul sito della mia recensione, del mio nome con iniziale del cognome, della città e dell’eventuale foto. L’email serve solo a verificare l’acquisto.</span></label>
+      <button type="submit" class="btn btn-accent">Invia la recensione</button>
+    </form>
   </div>
 </div></section>
 
@@ -452,7 +498,7 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
     </div>
     <a href="#" id="buyBtn" class="btn btn-accent ring" style="padding:24px 36px;font-size:20px"><span id="buyLabel">Ordina 2 power bank</span>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;font-weight:600;color:var(--dim)"><span>Pagamento sicuro</span><span>·</span><span>Spedizione tracciata inclusa</span><span>·</span><span>Reso entro [30] giorni</span></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px;font-weight:600;color:var(--dim)"><span>Pagamento sicuro</span><span>·</span><span>Spedizione tracciata inclusa</span><span>·</span><span>Reso entro 30 giorni</span></div>
   </div>
 </div></section>
 
@@ -461,11 +507,11 @@ footer a{color:var(--muted);text-decoration:none;margin-left:24px}
   <div class="reveal" style="display:flex;flex-direction:column;gap:18px;text-align:center;align-items:center;margin-bottom:40px">
     <div class="eyebrow">Domande frequenti</div><h2 style="font-size:clamp(34px,4vw,52px)">Tutto chiaro, prima di tutto.</h2>
   </div>
-  <details open><summary>Funziona con il mio telefono?<i>+</i></summary><p>Si aggancia con il magnete ai telefoni con ricarica magnetica ([elenca i modelli]). Per gli altri telefoni: [anello magnetico adesivo incluso / cavo USB-C]. Trovi tutto nella guida PDF gratuita qui sopra.</p></details>
-  <details><summary>Quante ricariche fa?<i>+</i></summary><p>[Indica il dato reale del tuo prodotto, es. circa N ricariche complete per un telefono da X mAh.]</p></details>
+  <details open><summary>Funziona con il mio telefono?<i>+</i></summary><p>Si aggancia con il magnete agli iPhone dal 12 in poi (esclusi iPhone SE e 16e) e ai Google Pixel 10. Sui Samsung Galaxy S25 e S26 e sugli altri telefoni con ricarica wireless basta una cover o un anello magnetico. E qualsiasi telefono si può ricaricare anche collegandolo con un cavo USB-C. Trovi l’elenco completo nella guida PDF gratuita qui sopra.</p></details>
+  <details><summary>Quante ricariche fa?<i>+</i></summary><p>La capacità è di 10.000 mAh. Quante ricariche complete fa dipende dal tuo telefono: le batterie degli smartphone di oggi vanno più o meno da 3.000 a 5.000 mAh, e con la ricarica senza fili una parte dell’energia si disperde. In pratica, per la maggior parte dei telefoni è almeno una ricarica completa, spesso di più.</p></details>
   <details><summary>Si può usare mentre sto usando il telefono?<i>+</i></summary><p>Sì: resta attaccato dietro al telefono e puoi continuare a chiamare, navigare e scrivere mentre si ricarica.</p></details>
-  <details><summary>Quando arriva?<i>+</i></summary><p>[Tempi reali di spedizione e corriere.] Ricevi il codice di tracciamento via email appena parte.</p></details>
-  <details><summary>E se non mi piace?<i>+</i></summary><p>Hai [30] giorni per restituirlo. Compila il <a href="resi.html">modulo resi</a>: ci vuole un minuto e ti rispondo io con tutte le istruzioni.</p></details>
+  <details><summary>Quando arriva?<i>+</i></summary><p>Il pacco parte dal magazzino del fornitore con un corriere tracciato. Appena parte ricevi un’email con il codice per seguirlo e la data di consegna stimata. Hai dubbi su un ordine? Scrivimi su WhatsApp con il numero d’ordine.</p></details>
+  <details><summary>E se non mi piace?<i>+</i></summary><p>Hai 30 giorni per restituirlo. Compila il <a href="resi.html">modulo resi</a>: ci vuole un minuto e ti rispondo io con tutte le istruzioni.</p></details>
 </section>
 
 <section style="padding:0 20px 96px">
@@ -519,7 +565,6 @@ const LINK_2_PEZZI = "#";   // es. "https://buy.stripe.com/yyyy"
 
 /* ============================================================
    ASSISTENTE CHAT: i tuoi contatti e le risposte automatiche
-   Cambia i testi tra [parentesi] con i dati reali del tuo prodotto.
    ============================================================ */
 const CONTATTI = {
   whatsapp: "393895009266",        // il tuo numero con prefisso 39, senza + e senza spazi
@@ -528,19 +573,19 @@ const CONTATTI = {
 const RISPOSTE = [
   { chip: "Funziona col mio telefono?",
     parole: ["compatib","funziona","iphone","samsung","android","telefono","modello","magsafe","qi2","xiaomi","pixel"],
-    testo: "Si aggancia con il magnete a tutti i telefoni con ricarica magnetica: [elenca i modelli, es. iPhone 12 e successivi]. Per gli altri telefoni: [anello magnetico adesivo incluso / cavo USB-C]. Nella <a href=\"guida-compatibilita.pdf\" download>guida gratuita</a> trovi l’elenco completo." },
+    testo: "Si aggancia con il magnete agli iPhone dal 12 in poi (esclusi SE e 16e) e ai Pixel 10. Su Samsung Galaxy S25/S26 e altri telefoni con ricarica wireless serve una cover o un anello magnetico; con il cavo USB-C si ricarica qualsiasi telefono. Nella <a href=\"guida-compatibilita.pdf\" download>guida gratuita</a> trovi l’elenco completo." },
   { chip: "Quando arriva?",
     parole: ["arriva","spedizion","consegna","giorni","quando","tracking","traccia","corriere","pacco","spedito"],
-    testo: "Il tuo ordine parte entro [N] giorni e arriva in [N] giorni lavorativi. Appena parte ricevi un’email con il codice per seguirlo. Hai già ordinato e il pacco tarda? Scrivimi il numero d’ordine su WhatsApp e controllo subito." },
+    testo: "Il pacco parte dal magazzino del fornitore con corriere tracciato: appena parte ricevi un’email con il codice per seguirlo e la consegna stimata. Hai già ordinato e il pacco tarda? Scrivimi il numero d’ordine su WhatsApp e controllo subito." },
   { chip: "Quante ricariche fa?",
     parole: ["ricarich","dura","durata","mah","capacit","batteria","potenza","watt","veloce"],
-    testo: "Ha una capacità di [10.000] mAh: circa [N] ricariche complete per un telefono medio. Ricarica wireless a [15W], e puoi continuare a usare il telefono mentre carica." },
+    testo: "Ha una capacità di 10.000 mAh: per la maggior parte dei telefoni almeno una ricarica completa, spesso di più. Ricarica senza fili fino a 15 W, e puoi usare il telefono mentre carica." },
   { chip: "Resi e garanzia",
     parole: ["reso","resi","restitu","rimbors","garanzi","rott","difett","non funziona","cambio","sostitu"],
-    testo: "Hai [30] giorni per restituirlo, e 2 anni di garanzia se è difettoso. Fai tutto da qui: <a href=\"resi.html\">compila il modulo resi</a>, ci vuole un minuto." },
+    testo: "Hai 30 giorni per restituirlo, e 2 anni di garanzia se è difettoso. Fai tutto da qui: <a href=\"resi.html\">compila il modulo resi</a>, ci vuole un minuto." },
   { chip: "Come si paga?",
     parole: ["pag","carta","paypal","prezzo","costa","costo","sconto","offerta","euro","€"],
-    testo: "Paghi in modo sicuro con [carta, PayPal, Apple Pay]. 1 pezzo costa 39,90 €, 2 pezzi 69,90 € (ne regali uno e risparmi 9,90 €). La spedizione è sempre inclusa. <a href=\"#ordina\" data-chat-close>Vai all’ordine</a>." },
+    testo: "Paghi in modo sicuro con carta, Apple Pay o Google Pay. 1 pezzo costa 39,90 €, 2 pezzi 69,90 € (ne regali uno e risparmi 9,90 €). La spedizione è sempre inclusa. <a href=\"#ordina\" data-chat-close>Vai all’ordine</a>." },
   { chip: "Voglio parlare con te",
     parole: ["parlare","persona","umano","operatore","contatt","whatsapp","telefono tuo","chiamare","email"],
     testo: "Certo! Ti rispondo io di persona su WhatsApp, di solito in poche ore." , umano: true }
